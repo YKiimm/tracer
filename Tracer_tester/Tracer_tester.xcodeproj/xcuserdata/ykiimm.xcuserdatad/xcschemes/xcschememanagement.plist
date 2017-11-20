@@ -4,18 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Tracer.xcscheme</key>
+		<key>Tracer_tester.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>A538DFEA1FBA95AD00D5D056</key>
-		<dict>
-			<key>primary</key>
-			<true/>
+			<integer>0</integer>
 		</dict>
 	</dict>
 </dict>
