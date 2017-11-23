@@ -11,65 +11,98 @@ import PopupDialog
 import JTAppleCalendar
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     // MARK: - Property
+//    let outsideMonthColor = UIColor(colorWithHexValue: 0x584a66)
+    let outsideMonthColor = UIColor.lightGray
+    let monthColor = UIColor.white
+    let selectedMonthColor = UIColor(colorWithHexValue: 0x3a294b)
+    let currentDateSelecteViewColor = UIColor(colorWithHexValue: 0x4e3f5d)
     let formatter = DateFormatter()
     
     
     // MARK: - IBOutlet
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var month: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     
     // MARK: - IBAction
-    @IBAction func buttonOneAction(_ sender: Any) {
-        let popupVC = PopUpViewController()
-        self.present(popupVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func buttonTwoAction(_ sender: Any) {
-        let title = "pop up dialog title"
-        let message = "this is message. just listen."
-        let popupDialog = PopupDialog(title: title, message: message)
-        
-        self.present(popupDialog, animated: true, completion: nil)
-    }
-    
-    @IBAction func buttonThreeAction(_ sender: Any) {
-        let title = "pop up dialog title"
-        let message = "this is message. just listen."
-        let image = UIImage(named: "iphone-hero.jpg")
-        let secondPopupDialog = PopupDialog(title: title,
-                                            message: message,
-                                            image: image,
-                                            buttonAlignment: UILayoutConstraintAxis.horizontal,
-                                            transitionStyle: PopupDialogTransitionStyle.bounceDown,
-                                            gestureDismissal: false) {
-                                                print("dismissing second popup dialog")
-        }
-        let cancelButton = CancelButton(title: "Cancel",
-                                        height: 100,
-                                        dismissOnTap: true) {
-                                            print("cancel")
-        }
-        let okButton = DefaultButton(title: "OK",
-                                     height: 100,
-                                     dismissOnTap: true) {
-                                        print("OK")
-        }
-        secondPopupDialog.addButtons([cancelButton, okButton])
-        self.present(secondPopupDialog, animated: true, completion: nil)
-    }
+ 
     
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCalendarView()
+        setupCalendarView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: - Method
+    func setupCalendarView() {
+        // setup calendar line
+        calendarView.minimumLineSpacing = 0
+        calendarView.minimumInteritemSpacing = 0
+        calendarView.visibleDates { (visibleDates) in
+            self.setupViewsOfCalendar(from: visibleDates)
+        }
+    }
+    
+    func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
+        calendarView.visibleDates { (visibleDates) in
+            let date = visibleDates.monthDates.first!.date
+            
+            self.formatter.dateFormat = "yyyy"
+            self.year.text = self.formatter.string(from: date)
+            
+            self.formatter.dateFormat = "MMMM"
+            self.month.text = self.formatter.string(from: date)
+        }
+    }
+    
+    func handleCellTextcolor(view: JTAppleCell?, cellState: CellState) {
+        guard let validCell = view as? CustomCell else { return }
+        if validCell.isSelected {
+            validCell.dateLabel.textColor = selectedMonthColor
+        } else {
+            if cellState.dateBelongsTo == .thisMonth {
+                validCell.dateLabel.textColor = monthColor
+            } else {
+                validCell.dateLabel.textColor = outsideMonthColor
+            }
+        }
+    }
+    
+    func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
+        let validCell = view as! CustomCell
+        if cellState.isSelected {
+            validCell.selectedView.isHidden = false
+        } else {
+            validCell.selectedView.isHidden = true
+        }
+    }
+    
+    
+    // MARK: - TableView Method
+    var cellText = ["cell1", "cell2", "cell3", "cell4", "cell5", "cell6", "cell7", "cell8", "cell9", "cell10", "cell11", "cell12", "cell13", "cell14", "cell15", "cell16", ]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellText.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let item = cellText[indexPath.row]
+        cell.textLabel?.text = item
+        return cell
     }
 }
 
@@ -89,18 +122,46 @@ extension ViewController: JTAppleCalendarViewDataSource {
     }
 }
 
+
 extension ViewController: JTAppleCalendarViewDelegate {
 
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let customCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCell
         customCell.dateLabel.text = cellState.text
+        handleCellSelected(view: customCell, cellState: cellState)
+        handleCellTextcolor(view: customCell, cellState: cellState)
         return customCell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         let customCell = cell as! CustomCell
         customCell.dateLabel.text = cellState.text
-        
+//        handleCellSelected(view: customCell, cellState: cellState)
+//        handleCellTextcolor(view: customCell, cellState: cellState)
     }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellSelected(view: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellSelected(view: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        setupViewsOfCalendar(from: visibleDates)
+    }
+    
 }
 
+
+extension UIColor {
+    convenience init(colorWithHexValue value: Int, alpha: CGFloat = 1.0) {
+        self.init(
+            red: CGFloat((value & 0xFF0000) >> 16) / 255,
+            green: CGFloat((value & 0x00FF00) >> 8) / 255,
+            blue: CGFloat((value & 0x0000FF)) / 255,
+            alpha: alpha
+        )
+    }
+}

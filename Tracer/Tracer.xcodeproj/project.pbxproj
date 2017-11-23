@@ -15,6 +15,8 @@
 		A538DFF71FBA95AE00D5D056 /* Tracer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A538DFF51FBA95AE00D5D056 /* Tracer.xcdatamodeld */; };
 		A538DFF91FBA95AE00D5D056 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A538DFF81FBA95AE00D5D056 /* Assets.xcassets */; };
 		A538DFFC1FBA95AE00D5D056 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A538DFFA1FBA95AE00D5D056 /* LaunchScreen.storyboard */; };
+		A574AB5F1FC561EB008B29F6 /* basic-buttons-pack.png in Resources */ = {isa = PBXBuildFile; fileRef = A574AB5E1FC561EB008B29F6 /* basic-buttons-pack.png */; };
+		A574AB611FC69174008B29F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574AB601FC69174008B29F6 /* Extensions.swift */; };
 		A5A403C21FBC3082001845A9 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A403C11FBC3082001845A9 /* CustomCell.swift */; };
 		A5AAE1261FBB1EBF00D56883 /* iphone-hero.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A5AAE1251FBB1EBF00D56883 /* iphone-hero.jpg */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,8 @@
 		A538DFF81FBA95AE00D5D056 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A538DFFB1FBA95AE00D5D056 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A538DFFD1FBA95AE00D5D056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A574AB5E1FC561EB008B29F6 /* basic-buttons-pack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-buttons-pack.png"; sourceTree = "<group>"; };
+		A574AB601FC69174008B29F6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A5A403C11FBC3082001845A9 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		A5AAE1251FBB1EBF00D56883 /* iphone-hero.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "iphone-hero.jpg"; sourceTree = "<group>"; };
 		AF0082B929BAAD6BA1773D8A /* Pods-Tracer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tracer/Pods-Tracer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 				A538DFF01FBA95AE00D5D056 /* ViewController.swift */,
 				A510DF711FBBD78400FC4DA8 /* PopUpViewController.swift */,
 				A5A403C11FBC3082001845A9 /* CustomCell.swift */,
+				A574AB601FC69174008B29F6 /* Extensions.swift */,
 				A538DFF21FBA95AE00D5D056 /* Main.storyboard */,
 				A5AAE1241FBB1E9A00D56883 /* Support files */,
 				A538DFF51FBA95AE00D5D056 /* Tracer.xcdatamodeld */,
@@ -104,6 +109,7 @@
 				A538DFFA1FBA95AE00D5D056 /* LaunchScreen.storyboard */,
 				A538DFFD1FBA95AE00D5D056 /* Info.plist */,
 				A5AAE1251FBB1EBF00D56883 /* iphone-hero.jpg */,
+				A574AB5E1FC561EB008B29F6 /* basic-buttons-pack.png */,
 			);
 			path = "Support files";
 			sourceTree = "<group>";
@@ -172,6 +178,7 @@
 			files = (
 				A5AAE1261FBB1EBF00D56883 /* iphone-hero.jpg in Resources */,
 				A538DFFC1FBA95AE00D5D056 /* LaunchScreen.storyboard in Resources */,
+				A574AB5F1FC561EB008B29F6 /* basic-buttons-pack.png in Resources */,
 				A538DFF91FBA95AE00D5D056 /* Assets.xcassets in Resources */,
 				A538DFF41FBA95AE00D5D056 /* Main.storyboard in Resources */,
 			);
@@ -241,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A538DFF11FBA95AE00D5D056 /* ViewController.swift in Sources */,
+				A574AB611FC69174008B29F6 /* Extensions.swift in Sources */,
 				A538DFF71FBA95AE00D5D056 /* Tracer.xcdatamodeld in Sources */,
 				A5A403C21FBC3082001845A9 /* CustomCell.swift in Sources */,
 				A538DFEF1FBA95AE00D5D056 /* AppDelegate.swift in Sources */,
